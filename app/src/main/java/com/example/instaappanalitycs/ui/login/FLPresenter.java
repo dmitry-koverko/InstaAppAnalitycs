@@ -13,6 +13,8 @@ import android.webkit.CookieSyncManager;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.instaappanalitycs.MainActivity;
+import com.example.instaappanalitycs.R;
 import com.example.instaappanalitycs.api.ApiServices;
 import com.example.instaappanalitycs.model.GetUname;
 import com.example.instaappanalitycs.model.api.GetUnameResponse;
@@ -34,10 +36,12 @@ public class FLPresenter implements FLContract.Presenter {
     private FLContract.View _view;
     private Realm mRealm;
 
+    private MainActivity activity;
 
     public FLPresenter(Context context, FLContract.View view) {
 
         _context = context;
+        activity = (MainActivity) context;
         _view = view;
         mRealm = Realm.getDefaultInstance();
     }
@@ -105,7 +109,7 @@ public class FLPresenter implements FLContract.Presenter {
             @Override
             public void onAvailable(Network network) {
                 _view.conectionSuccess();
-                //_view.loadWebView();
+                _view.loadWebView();
             }
 
             @Override
@@ -134,7 +138,7 @@ public class FLPresenter implements FLContract.Presenter {
         realm_user.setUname(user.getUname());
         mRealm.commitTransaction();
 
-
+        activity.startFragment(R.id.nav_gallery);
     }
 
     @Override

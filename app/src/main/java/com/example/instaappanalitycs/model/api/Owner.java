@@ -3,7 +3,9 @@ package com.example.instaappanalitycs.model.api;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Owner {
+import io.realm.RealmObject;
+
+public class Owner extends RealmObject {
 
     @SerializedName("__typename")
     @Expose

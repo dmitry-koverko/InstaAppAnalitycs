@@ -4,6 +4,8 @@ public class VariableUserMedia {
     private String id;
     private int first;
     private String after = "";
+    private String shortcode = "";
+    private boolean include_reel;
 
     public VariableUserMedia(){};
 
@@ -35,5 +37,21 @@ public class VariableUserMedia {
 
     public void setAfter(String after) {
         this.after = after;
+    }
+
+    public String getShortcode() {
+        return shortcode;
+    }
+
+    public void setShortcode(String shortcode) {
+        this.shortcode = shortcode;
+    }
+
+    public boolean isInclude_reel() {
+        return include_reel;
+    }
+
+    public void setInclude_reel(boolean include_reel) {
+        this.include_reel = include_reel;
     }
 }

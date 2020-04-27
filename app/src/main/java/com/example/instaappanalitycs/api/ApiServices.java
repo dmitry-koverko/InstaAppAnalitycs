@@ -21,9 +21,22 @@ public class ApiServices {
             .client(okHttpClient)
             .build();
 
+    Retrofit retrofitMy = new Retrofit.Builder()
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("http://192.168.1.103/")
+            .client(okHttpClient)
+            .build();
+
     public IInstagramApi getApi(){
 
         IInstagramApi api = retrofit.create(IInstagramApi.class);
+        return api;
+    }
+
+    public IMyApi getMyApi(){
+
+        IMyApi api = retrofitMy.create(IMyApi.class);
         return api;
     }
 

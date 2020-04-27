@@ -3,7 +3,7 @@ package com.example.instaappanalitycs.model.api.media;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Page_info {
+    public class Page_info {
 
     @SerializedName("has_next_page")
     @Expose

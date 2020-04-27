@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "697426365471",
+    "firebase_url": "https://instaup-50813.firebaseio.com",
+    "project_id": "instaup-50813",
+    "storage_bucket": "instaup-50813.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697426365471:android:c21f36738032d86768192a",
+        "android_client_info": {
+          "package_name": "com.instaup.instaappanalitycs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "697426365471-5mmpejo44eki80k18jfi8kca1bm2693p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrsmV828grB3MbWBsYpb6uCYk5MQrnhR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "697426365471-5mmpejo44eki80k18jfi8kca1bm2693p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
