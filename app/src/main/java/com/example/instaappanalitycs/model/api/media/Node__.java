@@ -75,7 +75,19 @@ public class Node__ {
     @Expose
     private String thumbnail_src;
 
-//    @SerializedName("thumbnail_resources")
+    @SerializedName("edge_media_to_caption")
+    @Expose
+    private Edge_media_to_caption edge_media_to_caption;
+
+    public Edge_media_to_caption getEdge_media_to_caption() {
+        return edge_media_to_caption;
+    }
+
+    public void setEdge_media_to_caption(Edge_media_to_caption edge_media_to_caption) {
+        this.edge_media_to_caption = edge_media_to_caption;
+    }
+
+    //    @SerializedName("thumbnail_resources")
 //    @Expose
 //    private Thumbnail_resources thumbnail_resources;
 

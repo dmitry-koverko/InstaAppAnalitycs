@@ -25,6 +25,8 @@ import com.example.instaappanalitycs.model.api.media.Page_info;
 import com.example.instaappanalitycs.model.api.media.ResponseMedia;
 import com.example.instaappanalitycs.model.api.media.ResponseMediaComments;
 import com.example.instaappanalitycs.model.api.userinfo.ResponseUserInfoA1;
+import com.example.instaappanalitycs.model.media.FeedObject;
+import com.example.instaappanalitycs.model.media.Media;
 import com.example.instaappanalitycs.model.user.User;
 import com.example.instaappanalitycs.model.user.UserInfo;
 import com.example.instaappanalitycs.ui.login.FLContract;
@@ -270,7 +272,10 @@ public class InfoPresenter implements ICContract, InfoContract.Presenter {
 
                             for (Edge edge: responseBody.getData().getUser().getEdge_owner_to_timeline_media().getEdges()
                                  ) {
-                                Post post = new Post(edge.getNode());
+                                String text = "";
+                                if(edge.getNode().getEdge_media_to_caption() != null && edge.getNode().getEdge_media_to_caption().getEdges().size() != 0)
+                                     text = edge.getNode().getEdge_media_to_caption().getEdges().get(0).getNode().getText();
+                                Post post = new Post(edge.getNode(), text);
                                 postList.add(post);
                             }
 
@@ -298,13 +303,18 @@ public class InfoPresenter implements ICContract, InfoContract.Presenter {
         PostListObject postListObject = new PostListObject();
         List<ShortCode> list = new ArrayList<>();
         User user = mRealm.where(User.class).findFirst();
+        List<Media> mediaList = new ArrayList<>();
 
         for (Post p : postList
         ) {
             count_cmts += p.getNode().getEdge_media_to_comment().getCount();
             ShortCode shortCode = new ShortCode(p.getNode().getShortcode());
+            Media m = p.convertToMedia();
+            mediaList.add(m);
+            Log.d(TAG, "media text = " + m.getText());
             list.add(shortCode);
         }
+        addFeedToDB(mediaList);
         Log.d(TAG, "count commenta all =  " +count_cmts);
         postListObject.setId(String.valueOf(user.getUid()));
         postListObject.setList(list);
@@ -445,6 +455,21 @@ public class InfoPresenter implements ICContract, InfoContract.Presenter {
         mRealm.commitTransaction();
         testRTC();
     }
+
+    @Override
+    public void addFeedToDB(List<Media> mediaList) {
+        mRealm.beginTransaction();
+        FeedObject feedObject = mRealm.createObject(FeedObject.class);
+
+        for (Media m: mediaList
+             ) {
+            Media media  = mRealm.copyToRealm(m);
+            feedObject.getMediaRealmList().add(media);
+        }
+        mRealm.commitTransaction();
+    }
+
+
 
     private void testRTC() {
         TopCommentsObject top = mRealm.where(TopCommentsObject.class).findFirst();

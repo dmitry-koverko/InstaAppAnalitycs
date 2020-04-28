@@ -3,6 +3,7 @@ package com.example.instaappanalitycs.ui.info;
 import com.example.instaappanalitycs.model.Post;
 import com.example.instaappanalitycs.model.PostListObject;
 import com.example.instaappanalitycs.model.TopComments;
+import com.example.instaappanalitycs.model.media.Media;
 
 import java.util.List;
 
@@ -20,5 +21,6 @@ public interface InfoContract {
         void getCountsInfo();
         void addToRealmTopLikers(List<TopComments> listLikers);
         void addToRealmTopCommetns(List<TopComments> listComments);
+        void addFeedToDB(List<Media> mediaList);
     }
 }
